@@ -5,6 +5,7 @@
 # infra-settings
 deepin ci/cd 基础设施配置
 
+
 # 简介
 
 使用[k3s](https://github.com/deepin-community/k3s)管理目前deepin ci/cd所用到的物理资源，并在此基础上逐步搭建、维护和开发我们的ci/cd应用以及流程；该项目则用于管理和公示这些基础设置的配置，包括物理资源以及ci/cd相关服务的配置信息等。
