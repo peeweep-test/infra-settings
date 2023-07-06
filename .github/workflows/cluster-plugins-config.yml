@@ -1,0 +1,33 @@
+name: prow plugins configuration
+on:
+  pull_request_target:
+    types: [opened, synchronize, closed]
+    #paths:
+    #  - "services/prow/config/plugins.yml"
+
+env:
+  KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+jobs:
+  plugins-config:
+    #if: github.event.pull_request.merged
+    name: plugins-config
+    runs-on: self-hosted
+    steps:
+      - name: config k3s client token
+        run: |
+          ARCH=$(uname -m)
+          if [ ! -f /usr/bin/k3s ] && [ "$ARCH" = "x86_64" ]; then sudo curl -fLo /usr/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.27.3+k3s1/k3s ; fi
+          if [ ! -f /usr/bin/k3s ] && [ "$ARCH" = "aarch64" ]; then sudo curl -fLo /usr/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.27.3+k3s1/k3s-arm64 ; fi
+          sudo chmod +x /usr/bin/k3s && sudo ln -sf /usr/bin/k3s /usr/bin/kubectl
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: apply plugins config
+        run: |
+          kubectl get nodes,svc,pods,runner -A
