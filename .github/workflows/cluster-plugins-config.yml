@@ -12,7 +12,7 @@ jobs:
   plugins-config:
     #if: github.event.pull_request.merged
     name: plugins-config
-    runs-on: infra-setting-runner
+    runs-on: self-hosted
     steps:
       - name: config k3s client token
         run: |
