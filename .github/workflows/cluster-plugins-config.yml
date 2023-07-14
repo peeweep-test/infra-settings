@@ -16,10 +16,6 @@ jobs:
     steps:
       - name: config k3s client token
         run: |
-          ARCH=$(uname -m)
-          if [ ! -f /usr/bin/k3s ] && [ "$ARCH" = "x86_64" ]; then sudo curl -fLo /usr/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.27.3+k3s1/k3s ; fi
-          if [ ! -f /usr/bin/k3s ] && [ "$ARCH" = "aarch64" ]; then sudo curl -fLo /usr/bin/k3s https://github.com/k3s-io/k3s/releases/download/v1.27.3+k3s1/k3s-arm64 ; fi
-          sudo chmod +x /usr/bin/k3s && sudo ln -sf /usr/bin/k3s /usr/bin/kubectl
           mkdir -p ~/.kube
           echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
 
@@ -30,4 +26,5 @@ jobs:
 
       - name: apply plugins config
         run: |
-          kubectl get nodes,svc,pods,runner -A
+          #make -C services/prow/config
+          kubectl get runner

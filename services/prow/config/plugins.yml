@@ -45,7 +45,7 @@ approve:
   - peeweep-test
   - deepin-community
   require_self_approval: true
-  lgtm_acts_as_approve: true
+  #lgtm_acts_as_approve: true
 triggers:
 - repos:
   - peeweep-test
@@ -69,6 +69,9 @@ owners:
       owners: 'OWNERS'
       owners_aliases: 'OWNERS_ALIASES'
     deepin-community/Repository-Manager:
+      owners: 'OWNERS'
+      owners_aliases: 'OWNERS_ALIASES'
+    deepin-community/.github:
       owners: 'OWNERS'
       owners_aliases: 'OWNERS_ALIASES'
 welcome:
