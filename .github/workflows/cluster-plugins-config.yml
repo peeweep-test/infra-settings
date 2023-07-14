@@ -22,8 +22,8 @@ jobs:
       - name: config k3s client token
         run: |
           mkdir -p ~/.kube
-          echo "$KUBECONFIG" | base64 -d > ~/.kube/config
-          cat ~/.kube/config
+          #echo "$KUBECONFIG" | base64 -d > ~/.kube/config
+          #cat ~/.kube/config
 
       - name: apply plugins config
         run: |
