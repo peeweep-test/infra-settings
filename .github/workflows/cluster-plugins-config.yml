@@ -24,4 +24,5 @@ jobs:
           #make -C services/prow/config
           mkdir -p ~/.kube
           echo "$KUBECONFIG" | base64 -d > ~/.kube/config
-          kubectl get runner
+          cat ~/.kube/config
+          kubectl -kubeconfig=~/.kube/config get runner
