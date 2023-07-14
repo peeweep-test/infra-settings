@@ -22,9 +22,9 @@ jobs:
       - name: config k3s client token
         run: |
           mkdir -p ~/.kube
-          echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+          echo "$KUBECONFIG" > ~/.kube/config
           cat ~/.kube/config
-  
+
       - name: apply plugins config
         run: |
           #make -C services/prow/config
