@@ -25,4 +25,4 @@ jobs:
           mkdir -p ~/.kube
           echo "$KUBECONFIG" | base64 -d > ~/.kube/config
           cat ~/.kube/config
-          kubectl -kubeconfig=~/.kube/config get runner
+          kubectl --kubeconfig ~/.kube/config get runner
