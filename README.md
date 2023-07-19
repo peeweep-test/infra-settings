@@ -1,5 +1,5 @@
 <p align="center">
-   中文 | <a href="README.zh_CN.md">English<a/>
+   中文 | <a href="README.en.md">English<a/>
 </p>
 
 # infra-settings
